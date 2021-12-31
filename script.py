@@ -1,3 +1,7 @@
+"""
+Taken from nashmaniac/create-issue-action
+"""
+
 import os
 import github
 
@@ -24,9 +28,18 @@ github = github.Github(token)
 # GITHUB_REPOSITORY is the repo name in owner/name format in Github Workflow
 repo = github.get_repo(os.environ['GITHUB_REPOSITORY'])
 
-issue = repo.create_issue(
-    title=title,
-    body=body,
-    assignees=assignees,
-    labels=labels
-)
+issues = repo.get_issues(state="open", labels=labels)
+existing_issue = False
+for issue in issues:
+    if issue.title == title:
+        issue.edit(body=body, assignees=assignees)
+        existing_issue = True
+        break
+
+if not existing_issue:
+    issue = repo.create_issue(
+        title=title,
+        body=body,
+        assignees=assignees,
+        labels=labels
+    )
