@@ -15,7 +15,7 @@ body = os.environ['INPUT_BODY']
 # as I said GitHub expects labels and assignees as list but we supplied as string in yaml as list are not supposed in
 # .yaml format
 if labels and labels != '':
-    labels = labels.split(',')  # splitting by , to make a list
+    labels = labels.strip().split(',')  # splitting by , to make a list
 else:
     labels = []  # setting empty list if we get labels as '' or None
 
