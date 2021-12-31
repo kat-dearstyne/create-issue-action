@@ -27,24 +27,22 @@ else:
 github = github.Github(token)
 # GITHUB_REPOSITORY is the repo name in owner/name format in Github Workflow
 repo = github.get_repo(os.environ['GITHUB_REPOSITORY'])
-print(repo.id)
 
-#issues = repo.get_issues(state="open", labels=labels)
-#print(issues)
-#existing_issue = False
-#for issue in issues:
-#    if issue.title == title:
-#        issue.edit(body=body, assignees=assignees)
-#        existing_issue = True
-#        break
+issues = repo.get_issues(state="open", labels=labels)
+existing_issue = False
+for issue in issues:
+    if issue.title == title:
+        issue.edit(body=body, assignees=assignees)
+        existing_issue = True
+        break
 
-#if not existing_issue:
-#    issue = repo.create_issue(
-#        title=title,
-#        body=body,
-#        assignees=assignees,
-#       labels=labels
-#    )
+if not existing_issue:
+    issue = repo.create_issue(
+        title=title,
+        body=body,
+        assignees=assignees,
+       labels=labels
+    )
 issue = repo.create_issue(
     title=title,
     body=body,
