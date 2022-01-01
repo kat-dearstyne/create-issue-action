@@ -38,8 +38,8 @@ for issue in issues:
 
 if not existing_issue:
     issue = repo.create_issue(
-        title=title,
+        title=title + " edited",
         body=body,
         assignees=assignees,
-       labels=labels
+        labels=labels
     )
