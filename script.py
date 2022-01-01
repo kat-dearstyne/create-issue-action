@@ -11,6 +11,7 @@ token = os.environ['INPUT_TOKEN']
 labels = os.environ['INPUT_LABELS']
 assignees = os.environ['INPUT_ASSIGNEES']
 body = os.environ['INPUT_BODY']
+results_file = os.environ['RESULTS_FILE']
 
 # as I said GitHub expects labels and assignees as list but we supplied as string in yaml as list are not supposed in
 # .yaml format
@@ -23,6 +24,11 @@ if assignees and assignees != '':
     assignees = assignees.split(',')  # splitting by , to make a list
 else:
     assignees = []  # setting empty list if we get labels as '' or None
+
+if not body:
+    if results_file:
+        with open(os.path.join(os.getcwd(), results_file)) as f:
+            print("success")
 
 github = github.Github(token)
 # GITHUB_REPOSITORY is the repo name in owner/name format in Github Workflow
