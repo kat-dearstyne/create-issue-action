@@ -32,13 +32,13 @@ issues = repo.get_issues(state="open", labels=labels)
 existing_issue = False
 for issue in issues:
     if issue.title == title:
-        issue.edit(body=body, assignees=assignees)
+        issue.edit(body=body, assignees=assignees, title=title + " edited",)
         existing_issue = True
         break
 
 if not existing_issue:
     issue = repo.create_issue(
-        title=title + " edited",
+        title=title,
         body=body,
         assignees=assignees,
         labels=labels
