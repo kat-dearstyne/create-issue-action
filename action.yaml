@@ -26,6 +26,10 @@ inputs:
     required: false
     default: ''
     description: Body of the issue
+  results_file: # results file as RESULTS_FILE
+    required: false
+    default: ''
+    description: File containing results of previous step
 
 # definition how we want our action
 runs:
