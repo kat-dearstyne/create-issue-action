@@ -26,7 +26,7 @@ inputs:
     required: false
     default: ''
     description: Body of the issue
-  results_file: # results file as RESULTS_FILE
+  results: # results file as INPUT_RESULTS
     required: false
     default: ''
     description: File containing results of previous step
