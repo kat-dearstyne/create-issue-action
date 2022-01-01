@@ -29,12 +29,10 @@ github = github.Github(token)
 repo = github.get_repo(os.environ['GITHUB_REPOSITORY'])
 
 issues = repo.get_issues(state="open", labels=labels)
-print("issues: ", issues)
 existing_issue = False
 for issue in issues:
-    print(issue.title)
-    print(title)
     if issue.title == title:
+        print("True")
         issue.edit(body=body, assignees=assignees)
         existing_issue = True
         break
