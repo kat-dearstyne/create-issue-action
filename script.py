@@ -32,7 +32,6 @@ issues = repo.get_issues(state="open", labels=labels)
 existing_issue = False
 for issue in issues:
     if issue.title == title:
-        print("True")
         issue.edit(body=body, assignees=assignees)
         existing_issue = True
         break
@@ -44,9 +43,3 @@ if not existing_issue:
         assignees=assignees,
        labels=labels
     )
-issue = repo.create_issue(
-    title=title,
-    body=body,
-    assignees=assignees,
-    labels=labels
-)
