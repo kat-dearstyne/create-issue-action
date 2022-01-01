@@ -32,7 +32,7 @@ issues = repo.get_issues(state="open", labels=labels)
 existing_issue = False
 for issue in issues:
     if issue.title == title:
-        issue.edit(body=body, assignees=assignees, title=title + " edited",)
+        issue.edit(body=body, assignees=assignees)
         existing_issue = True
         break
 
