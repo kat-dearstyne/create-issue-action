@@ -27,6 +27,7 @@ else:
 
 if not body:
     if results_file:
+        print("Hello")
         print(os.path.exists(os.path.join(os.getcwd(), results_file)))
         with open(os.path.join(os.getcwd(), results_file)) as f:
             body = f.readlines()
