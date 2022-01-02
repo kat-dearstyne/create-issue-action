@@ -12,8 +12,8 @@ labels = os.environ['INPUT_LABELS']
 assignees = os.environ['INPUT_ASSIGNEES']
 body = os.environ['INPUT_BODY']
 results_file = os.environ['INPUT_RESULTS']
-state = 'close' if os.environ['INPUT_SHOULD_CLOSE'] == 'true' else 'open'
-print(os.environ['INPUT_SHOULD_CLOSE'])
+should_close = os.environ['INPUT_SHOULD_CLOSE'] == 'true'
+
 # as I said GitHub expects labels and assignees as list but we supplied as string in yaml as list are not supposed in
 # .yaml format
 if labels and labels != '':
@@ -39,14 +39,14 @@ issues = repo.get_issues(state="open", labels=labels)
 existing_issue = False
 for issue in issues:
     if issue.title == title:
-        if state.lower() == 'open':
-            issue.edit(body=body, assignees=assignees)
-        else:
+        if should_close:
             issue.edit(state='close')
+        else:
+            issue.edit(body=body, assignees=assignees)
         existing_issue = True
         break
 
-if not existing_issue and state != 'close':
+if not existing_issue and should_close != 'close':
     issue = repo.create_issue(
         title=title,
         body=body,
