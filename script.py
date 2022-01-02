@@ -13,7 +13,7 @@ assignees = os.environ['INPUT_ASSIGNEES']
 body = os.environ['INPUT_BODY']
 results_file = os.environ['INPUT_RESULTS']
 should_close = os.environ['INPUT_SHOULD_CLOSE'] == 'true'
-
+print("body ", body)
 # as I said GitHub expects labels and assignees as list but we supplied as string in yaml as list are not supposed in
 # .yaml format
 if labels and labels != '':
