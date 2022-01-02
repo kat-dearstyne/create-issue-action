@@ -47,7 +47,7 @@ for issue in issues:
         existing_issue = True
         break
 
-if not existing_issue and should_close:
+if not existing_issue and not should_close:
     issue = repo.create_issue(
         title=title,
         body=body,
