@@ -1,19 +1,32 @@
 # Create Issue Action
-This will let you create an issue based on user input from your GitHub Workflow
+
+This will let you create an issue based on user input from your GitHub Workflow or update an existing one if one with the same issue
+already exists
 
 ## Inputs
+
 ### title
+
 **Required** - Title of the issue
+
 ### token
+
 **Required** - Token of user that will create issue
+
 ### assignees
+
 **Not Required** - Assignes of the issue
+
 ### labels
+
 **Not Required** - Labels of the issue
+
 ### body
+
 **Not Required** - Body of the issue
 
 ## Usages
+
 ```yaml
 - uses: nashmaniac/create-issue-action@v1.1
   name: Create Issue Action

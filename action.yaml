@@ -30,6 +30,10 @@ inputs:
     required: false
     default: ''
     description: File containing results of previous step
+  state: # results file as INPUT_STATE
+    required: false
+    default: 'open'
+    description: desired state of the issue
 
 # definition how we want our action
 runs:
