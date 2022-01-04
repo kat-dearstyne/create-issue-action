@@ -30,7 +30,6 @@ if not body:
     if results_file:
         with open(os.path.join(os.getcwd(), results_file)) as f:
             body = "".join(f.readlines())
-print("body", body)
 
 github = github.Github(token)
 # GITHUB_REPOSITORY is the repo name in owner/name format in Github Workflow
