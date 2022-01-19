@@ -35,7 +35,7 @@ github = github.Github(token)
 repo = github.get_repo(os.environ['GITHUB_REPOSITORY'])
 
 if len(body) >= 65536:
-    body = body[:65490] + "... (See pylint workflow for rest of errors)"
+    body = body[:65490] + "\n... (See pylint workflow for rest of errors)"
 
 issues = repo.get_issues(state="open", labels=labels)
 existing_issue = False
