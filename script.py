@@ -30,10 +30,12 @@ if not body:
     if results_file:
         with open(os.path.join(os.getcwd(), results_file)) as f:
             body = "".join(f.readlines())
-
 github = github.Github(token)
 # GITHUB_REPOSITORY is the repo name in owner/name format in Github Workflow
 repo = github.get_repo(os.environ['GITHUB_REPOSITORY'])
+
+if len(body) >= 65536:
+    body = body[:65490] + "... (See pylint workflow for rest of errors)"
 
 issues = repo.get_issues(state="open", labels=labels)
 existing_issue = False
@@ -42,6 +44,7 @@ for issue in issues:
         if should_close:
             issue.edit(state='close')
         else:
+            assignees += issue.assignees
             issue.edit(body=body, assignees=assignees)
         existing_issue = True
         break
